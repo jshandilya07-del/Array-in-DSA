@@ -82,3 +82,2377 @@ using namespace std;
 //     cout << "Number of occurrences of " << X << ": " << count << endl;
 //     return 0;
 // }
+
+Lab Exercises
+
+Question 1 Create and display a Singly Linked List
+
+Write a C++ program to create and display a Singly Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+ 
+
+struct Node {
+
+    int data;
+
+    Node* next;
+
+    explicit Node(int value) : data(value), next(nullptr) {}
+
+};
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    Node* tail = nullptr;
+
+    int n;
+
+    cout << "Number of nodes: ";
+
+    if (!(cin >> n) || n < 0) return 0;
+
+    for (int i = 0, value; i < n; ++i) {
+
+        cout << "Value: ";
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = tail = node;
+
+        else { tail->next = node; tail = node; }
+
+    }
+
+    cout << "List: ";
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 2 Insert a node at the beginning
+
+Write a C++ program to insert a node at the beginning of a Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value;
+
+    cout << "Initial node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    cout << "Value to insert at beginning: "; cin >> value;
+
+    Node* node = new Node(value);
+
+    node->next = head;
+
+    head = node;
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 3 Insert a node at the end
+
+Write a C++ program to insert a node at the end of a Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value;
+
+    cout << "Initial node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    cout << "Value to insert at end: "; cin >> value;
+
+    Node* node = new Node(value);
+
+    if (!head) head = node;
+
+    else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 4 Insert a node at a given position
+
+Write a C++ program to insert a node at a given position.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value, position;
+
+    cout << "Initial node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    cout << "Position (1 to " << n + 1 << "): "; cin >> position;
+
+    cout << "Value: "; cin >> value;
+
+    if (position < 1 || position > n + 1) cout << "Invalid position\n";
+
+    else if (position == 1) { Node* node = new Node(value); node->next = head; head = node; }
+
+    else {
+
+        Node* p = head;
+
+        for (int i = 1; i < position - 1; ++i) p = p->next;
+
+        Node* node = new Node(value); node->next = p->next; p->next = node;
+
+    }
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 5 Delete a node from the beginning
+
+Write a C++ program to delete a node from the beginning.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    if (!head) cout << "List is empty\n";
+
+    else { Node* old = head; head = head->next; delete old; cout << "First node deleted\n"; }
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 6 Delete a node from the end
+
+Write a C++ program to delete a node from the end.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    if (!head) cout << "List is empty\n";
+
+    else if (!head->next) { delete head; head = nullptr; }
+
+    else {
+
+        Node* p = head;
+
+        while (p->next->next) p = p->next;
+
+        delete p->next; p->next = nullptr;
+
+    }
+
+    cout << "List after deleting the last node: ";
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 7 Delete a node from a given position
+
+Write a C++ program to delete a node from a given position.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value, position;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    cout << "Position to delete: "; cin >> position;
+
+    if (position < 1 || position > n) cout << "Invalid position\n";
+
+    else if (position == 1) { Node* old = head; head = head->next; delete old; }
+
+    else {
+
+        Node* p = head;
+
+        for (int i = 1; i < position - 1; ++i) p = p->next;
+
+        Node* old = p->next; p->next = old->next; delete old;
+
+    }
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 8 Search for an element in a Singly Linked List
+
+Write a C++ program to search for an element in a Singly Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value, key, position = 1;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    cout << "Value to search: "; cin >> key;
+
+    Node* p = head;
+
+    while (p && p->data != key) { p = p->next; ++position; }
+
+    if (p) cout << "Found at position " << position << "\n";
+
+    else cout << "Not found\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 9 Count the total number of nodes
+
+Write a C++ program to count the total number of nodes in a Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = node;
+
+        else { Node* p = head; while (p->next) p = p->next; p->next = node; }
+
+    }
+
+    int count = 0;
+
+    for (Node* p = head; p; p = p->next) ++count;
+
+    cout << "Total nodes: " << count << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 10 Find the maximum and minimum element
+
+Write a C++ program to find the maximum and minimum element in a Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    Node* tail = nullptr;
+
+    int n, value;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value;
+
+        Node* node = new Node(value);
+
+        if (!head) head = tail = node;
+
+        else { tail->next = node; tail = node; }
+
+    }
+
+    if (!head) cout << "List is empty\n";
+
+    else {
+
+        int smallest = head->data, largest = head->data;
+
+        for (Node* p = head->next; p; p = p->next) {
+
+            if (p->data < smallest) smallest = p->data;
+
+            if (p->data > largest) largest = p->data;
+
+        }
+
+        cout << "Minimum: " << smallest << "\nMaximum: " << largest << "\n";
+
+    }
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 11 Reverse a Singly Linked List
+
+Write a C++ program to reverse a Singly Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    Node* tail = nullptr;
+
+    int n, value;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value; Node* node = new Node(value);
+
+        if (!head) head = tail = node;
+
+        else { tail->next = node; tail = node; }
+
+    }
+
+    Node* previous = nullptr;
+
+    Node* current = head;
+
+    while (current) {
+
+        Node* nextNode = current->next;
+
+        current->next = previous;
+
+        previous = current;
+
+        current = nextNode;
+
+    }
+
+    head = previous;
+
+    cout << "Reversed list: ";
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 12 Sort the elements in ascending order
+
+Write a C++ program to sort the elements of a Linked List in ascending order.
+
+#include <iostream>
+
+#include <utility>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+int main() {
+
+    Node* head = nullptr;
+
+    Node* tail = nullptr;
+
+    int n, value;
+
+    cout << "Node count: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+
+        cin >> value; Node* node = new Node(value);
+
+        if (!head) head = tail = node;
+
+        else { tail->next = node; tail = node; }
+
+    }
+
+    for (Node* i = head; i; i = i->next)
+
+        for (Node* j = i->next; j; j = j->next)
+
+            if (i->data > j->data) swap(i->data, j->data);
+
+    cout << "Sorted list: ";
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 13 Menu-driven insertion deletion searching and display
+
+Write a menu-driven C++ program implementing insertion, deletion, searching and display operations.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+void display(Node* head) {
+
+    if (!head) cout << "List is empty\n";
+
+    for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+    cout << "\n";
+
+}
+
+void insertAt(Node*& head, int value, int position) {
+
+    if (position < 1) { cout << "Invalid position\n"; return; }
+
+    if (position == 1) { Node* node = new Node(value); node->next = head; head = node; return; }
+
+    Node* p = head;
+
+    for (int i = 1; p && i < position - 1; ++i) p = p->next;
+
+    if (!p) { cout << "Invalid position\n"; return; }
+
+    Node* node = new Node(value); node->next = p->next; p->next = node;
+
+}
+
+void deleteAt(Node*& head, int position) {
+
+    if (!head || position < 1) { cout << "Invalid position or empty list\n"; return; }
+
+    if (position == 1) { Node* old = head; head = head->next; delete old; return; }
+
+    Node* p = head;
+
+    for (int i = 1; p->next && i < position - 1; ++i) p = p->next;
+
+    if (!p->next) { cout << "Invalid position\n"; return; }
+
+    Node* old = p->next; p->next = old->next; delete old;
+
+}
+
+int main() {
+
+    Node* head = nullptr;
+
+    int choice, value, position;
+
+    do {
+
+        cout << "1 Insert  2 Delete  3 Search  4 Display  0 Exit\nChoice: ";
+
+        cin >> choice;
+
+        if (choice == 1) {
+
+            cout << "Value and position: "; cin >> value >> position;
+
+            insertAt(head, value, position);
+
+        } else if (choice == 2) {
+
+            cout << "Position: "; cin >> position; deleteAt(head, position);
+
+        } else if (choice == 3) {
+
+            cout << "Value to search: "; cin >> value;
+
+            int i = 1; Node* p = head;
+
+            while (p && p->data != value) { p = p->next; ++i; }
+
+            if (p) cout << "Found at position " << i << "\n";
+
+            else cout << "Not found\n";
+
+        } else if (choice == 4) display(head);
+
+    } while (choice != 0);
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 14 Doubly Linked List insertion and deletion
+
+Write a C++ program to implement a Doubly Linked List and perform insertion and deletion operations.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* prev; Node* next; Node(int v) : data(v), prev(nullptr), next(nullptr) {} };
+
+ 
+
+void insertAt(Node*& head, int value, int position) {
+
+    if (position < 1) { cout << "Invalid position\n"; return; }
+
+    Node* node = new Node(value);
+
+    if (position == 1) {
+
+        node->next = head;
+
+        if (head) head->prev = node;
+
+        head = node;
+
+        return;
+
+    }
+
+    Node* p = head;
+
+    for (int i = 1; p && i < position - 1; ++i) p = p->next;
+
+    if (!p) { delete node; cout << "Invalid position\n"; return; }
+
+    node->next = p->next; node->prev = p;
+
+    if (p->next) p->next->prev = node;
+
+    p->next = node;
+
+}
+
+void deleteAt(Node*& head, int position) {
+
+    if (position < 1 || !head) { cout << "Invalid position or empty list\n"; return; }
+
+    Node* p = head;
+
+    for (int i = 1; p && i < position; ++i) p = p->next;
+
+    if (!p) { cout << "Invalid position\n"; return; }
+
+    if (p->prev) p->prev->next = p->next; else head = p->next;
+
+    if (p->next) p->next->prev = p->prev;
+
+    delete p;
+
+}
+
+int main() {
+
+    Node* head = nullptr;
+
+    int choice, value, position;
+
+    do {
+
+        cout << "1 Insert  2 Delete  3 Display  0 Exit\nChoice: "; cin >> choice;
+
+        if (choice == 1) {
+
+            cout << "Value and position: "; cin >> value >> position;
+
+            insertAt(head, value, position);
+
+        } else if (choice == 2) {
+
+            cout << "Position: "; cin >> position; deleteAt(head, position);
+
+        } else if (choice == 3) {
+
+            for (Node* p = head; p; p = p->next) cout << p->data << " ";
+
+            cout << "\n";
+
+        }
+
+    } while (choice != 0);
+
+    while (head) { Node* old = head; head = head->next; delete old; }
+
+}
+
+Question 15 Circular Linked List traversal and insertion
+
+Write a C++ program to implement a Circular Linked List and perform traversal and insertion operations.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+ 
+
+void insertAt(Node*& head, int value, int position) {
+
+    if (position < 1) { cout << "Invalid position\n"; return; }
+
+    Node* node = new Node(value);
+
+    if (!head) {
+
+        if (position != 1) { delete node; cout << "Invalid position\n"; return; }
+
+        node->next = node; head = node; return;
+
+    }
+
+    if (position == 1) {
+
+        Node* tail = head; while (tail->next != head) tail = tail->next;
+
+        node->next = head; tail->next = node; head = node; return;
+
+    }
+
+    Node* p = head;
+
+    for (int i = 1; i < position - 1; ++i) {
+
+        p = p->next;
+
+        if (p == head) { delete node; cout << "Invalid position\n"; return; }
+
+    }
+
+    node->next = p->next; p->next = node;
+
+}
+
+void display(Node* head) {
+
+    if (!head) { cout << "List is empty\n"; return; }
+
+    Node* p = head;
+
+    do { cout << p->data << " "; p = p->next; } while (p != head);
+
+    cout << "\n";
+
+}
+
+void clear(Node*& head) {
+
+    if (!head) return;
+
+    Node* p = head->next;
+
+    while (p != head) { Node* next = p->next; delete p; p = next; }
+
+    delete head; head = nullptr;
+
+}
+
+int main() {
+
+    Node* head = nullptr;
+
+    int n, value, position;
+
+    cout << "Initial node count: "; cin >> n;
+
+    for (int i = 1; i <= n; ++i) { cin >> value; insertAt(head, value, i); }
+
+    cout << "Value and position to insert: "; cin >> value >> position;
+
+    insertAt(head, value, position);
+
+    cout << "Circular list: "; display(head);
+
+    clear(head);
+
+}
+
+Practice and Analysis Questions
+
+Question 1 What is a Linked List and how is it different from an array
+
+What is a Linked List and how is it different from an array?
+
+Answer: A linked list is a sequence of nodes. Each node stores data and a link to another node. Array elements occupy consecutive memory locations and can be accessed by index in O(1) time. A linked list grows node by node, so reaching an item by position takes O(n). Insertion and deletion can be O(1) when the target node or its predecessor is already known; arrays often need elements shifted.
+
+Question 2 What is a node in a Linked List
+
+What is a node in a Linked List?
+
+Answer: A node is one element of a linked list. In a singly linked list it contains a data value and a pointer to the next node. Other list types may store additional links, such as a pointer to the previous node.
+
+Question 3 What is the role of the Head pointer
+
+What is the role of the Head pointer?
+
+Answer: The head pointer stores the address of the first node. Traversal starts at head. If head is nullptr, the list is empty. Losing the head pointer can make the remaining nodes unreachable.
+
+Question 4 What is dynamic memory allocation
+
+What is dynamic memory allocation?
+
+Answer: Dynamic memory allocation reserves memory while a program is running. In C++, new can allocate a node on the free store and delete releases it when it is no longer needed. Linked lists use it to grow or shrink without choosing a fixed capacity in advance.
+
+Question 5 What is the difference between Singly and Doubly Linked Lists
+
+What is the difference between Singly and Doubly Linked Lists?
+
+Answer: A singly linked list stores a next pointer and supports forward traversal. A doubly linked list stores both next and previous pointers and supports traversal in both directions. The extra pointer uses more memory, but it makes some deletions and backward movement easier.
+
+Question 6 What is the time complexity of insertion at the beginning
+
+What is the time complexity of insertion at the beginning?
+
+Answer: Insertion at the beginning takes O(1) time. The new node points to the old head, and head is updated; the number of existing nodes does not affect the work.
+
+Question 7 Why does insertion at the end take O(n) with only a Head pointer
+
+Why does insertion at the end take O(n) with only a Head pointer?
+
+Answer: With only a head pointer, the program must follow next links until it reaches the last node. That traversal takes O(n). Keeping a tail pointer allows insertion at the end in O(1) time.
+
+Question 8 What is the time complexity of searching in a Linked List
+
+What is the time complexity of searching in a Linked List?
+
+Answer: Searching takes O(n) time in the worst case because each node may need to be checked. It takes O(1) if the value is in the first node, but the worst-case bound is linear.
+
+Question 9 What happens when Head == NULL
+
+What happens when Head == NULL?
+
+Answer: The list is empty; there is no first node to traverse, display, or delete.
+
+Question 10 What are the advantages and disadvantages of Linked Lists
+
+What are the advantages and disadvantages of Linked Lists?
+
+Answer: Linked lists can grow or shrink dynamically, and insertion or deletion is efficient when the relevant node is already known. They do not provide direct index access, require extra memory for links, and can have poorer cache locality than arrays. Searching by value still takes O(n).
+
+Question 11 How can a Linked List be used to implement a Stack
+
+How can a Linked List be used to implement a Stack?
+
+Answer: Use the head node as the top of the stack. Push inserts a node at the head, and pop removes the head. Both operations take O(1) time and need no fixed array capacity, subject to available memory.
+
+Question 12 How can a Linked List be used to implement a Queue
+
+How can a Linked List be used to implement a Queue?
+
+Answer: Keep pointers to both the first node (front) and last node (rear). Enqueue adds a node after rear and updates rear. Dequeue removes the front node and updates front. With both pointers, each operation takes O(1) time.
+
+Question 13 What is a Circular Linked List
+
+What is a Circular Linked List?
+
+Answer: A circular linked list links its last node back to its first node. In a singly circular list, the tail node's next pointer equals head, so traversal must stop when it returns to the starting node.
+
+Question 14 What is the difference between Linear and Circular Linked Lists
+
+What is the difference between Linear and Circular Linked Lists?
+
+Answer: In a linear linked list, the last node points to nullptr. In a circular linked list, the last node points back to the first node. Linear traversal ends at nullptr; circular traversal ends when it reaches the starting node again.
+
+Question 15 Compare Array and Linked List in terms of memory allocation access insertion and deletion
+
+Compare Array and Linked List in terms of memory allocation, access, insertion and deletion.
+
+Answer: Arrays store elements contiguously and commonly use a fixed capacity, though dynamic arrays can resize. They support O(1) indexed access. Linked lists allocate nodes as needed and use extra pointer memory; indexed access takes O(n). Inserting or deleting in the middle of an array may require shifting O(n) elements, while a linked-list link change is O(1) after the target location has been found. Finding that location still takes O(n).
+
+Lab Sheet 5 Stacks
+
+Lab Exercises
+
+Question 1 Implement a Stack using an array with basic operations
+
+Write a C++ program to implement a Stack using an array with Push, Pop, Peek, and Display operations.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 5;
+
+class Stack {
+
+    int data[CAPACITY], topIndex = -1;
+
+public:
+
+    bool push(int value) {
+
+        if (topIndex == CAPACITY - 1) return false;
+
+        data[++topIndex] = value; return true;
+
+    }
+
+    bool pop(int& value) {
+
+        if (topIndex == -1) return false;
+
+        value = data[topIndex--]; return true;
+
+    }
+
+    bool peek(int& value) const {
+
+        if (topIndex == -1) return false;
+
+        value = data[topIndex]; return true;
+
+    }
+
+    void display() const {
+
+        if (topIndex == -1) { cout << "Stack is empty\n"; return; }
+
+        for (int i = topIndex; i >= 0; --i) cout << data[i] << " ";
+
+        cout << "<- TOP\n";
+
+    }
+
+};
+
+int main() {
+
+    Stack s; int value;
+
+    s.push(10); s.push(20); s.push(30);
+
+    cout << "Stack: "; s.display();
+
+    if (s.peek(value)) cout << "Top: " << value << "\n";
+
+    if (s.pop(value)) cout << "Popped: " << value << "\n";
+
+    cout << "After pop: "; s.display();
+
+}
+
+Question 2 Demonstrate Stack Overflow
+
+Write a C++ program to demonstrate Stack Overflow.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 3;
+
+    int stack[CAPACITY], top = -1;
+
+    auto push = [&](int value) {
+
+        if (top == CAPACITY - 1) cout << "Overflow: cannot push " << value << "\n";
+
+        else { stack[++top] = value; cout << "Pushed " << value << "\n"; }
+
+    };
+
+    push(10); push(20); push(30); push(40);
+
+}
+
+Question 3 Demonstrate Stack Underflow
+
+Write a C++ program to demonstrate Stack Underflow.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 3;
+
+    int stack[CAPACITY], top = -1;
+
+    auto pop = [&]() {
+
+        if (top == -1) cout << "Underflow: stack is empty\n";
+
+        else cout << "Popped " << stack[top--] << "\n";
+
+    };
+
+    pop();
+
+    stack[++top] = 25;
+
+    pop();
+
+    pop();
+
+}
+
+Question 4 Display the TOP element using Peek
+
+Write a C++ program to display the TOP element using Peek operation.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int stack[CAPACITY] = {}, top = -1;
+
+    stack[++top] = 12; stack[++top] = 24; stack[++top] = 36;
+
+    if (top == -1) cout << "Stack is empty\n";
+
+    else cout << "TOP element: " << stack[top] << "\n";
+
+}
+
+Question 5 Menu-driven Stack operations
+
+Write a menu-driven C++ program for Push, Pop, Peek, and Display.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 100;
+
+int main() {
+
+    int stack[CAPACITY], top = -1, choice, value;
+
+    do {
+
+        cout << "1 Push  2 Pop  3 Peek  4 Display  0 Exit\nChoice: ";
+
+        cin >> choice;
+
+        if (choice == 1) {
+
+            cout << "Value: "; cin >> value;
+
+            if (top == CAPACITY - 1) cout << "Stack Overflow\n";
+
+            else stack[++top] = value;
+
+        } else if (choice == 2) {
+
+            if (top == -1) cout << "Stack Underflow\n";
+
+            else cout << "Popped: " << stack[top--] << "\n";
+
+        } else if (choice == 3) {
+
+            if (top == -1) cout << "Stack is empty\n";
+
+            else cout << "TOP: " << stack[top] << "\n";
+
+        } else if (choice == 4) {
+
+            if (top == -1) cout << "Stack is empty\n";
+
+            else { for (int i = top; i >= 0; --i) cout << stack[i] << " "; cout << "<- TOP\n"; }
+
+        }
+
+    } while (choice != 0);
+
+}
+
+Question 6 Stack of integers using an array
+
+Write a C++ program to implement a Stack of integers using an array.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int stack[CAPACITY], top = -1, n, value;
+
+    cout << "How many integers (0 to 5): "; cin >> n;
+
+    if (n < 0 || n > CAPACITY) { cout << "Invalid count\n"; return 0; }
+
+    for (int i = 0; i < n; ++i) { cin >> value; stack[++top] = value; }
+
+    cout << "Stack from TOP to bottom: ";
+
+    for (int i = top; i >= 0; --i) cout << stack[i] << " ";
+
+    cout << "\n";
+
+}
+
+Question 7 Reverse a string using Stack
+
+Write a C++ program to reverse a string using Stack.
+
+#include <iostream>
+
+#include <stack>
+
+#include <string>
+
+using namespace std;
+
+int main() {
+
+    string text;
+
+    stack<char> chars;
+
+    cout << "Enter a line: "; getline(cin, text);
+
+    for (char ch : text) chars.push(ch);
+
+    cout << "Reversed: ";
+
+    while (!chars.empty()) { cout << chars.top(); chars.pop(); }
+
+    cout << "\n";
+
+}
+
+Question 8 Check balanced parentheses using Stack
+
+Write a C++ program to check balanced parentheses using Stack.
+
+#include <iostream>
+
+#include <stack>
+
+#include <string>
+
+using namespace std;
+
+bool matches(char open, char close) {
+
+    return (open == '(' && close == ')') || (open == '[' && close == ']') ||
+
+           (open == '{' && close == '}');
+
+}
+
+int main() {
+
+    string expression;
+
+    stack<char> opens;
+
+    cout << "Expression: "; getline(cin, expression);
+
+    bool balanced = true;
+
+    for (char ch : expression) {
+
+        if (ch == '(' || ch == '[' || ch == '{') opens.push(ch);
+
+        else if (ch == ')' || ch == ']' || ch == '}') {
+
+            if (opens.empty() || !matches(opens.top(), ch)) { balanced = false; break; }
+
+            opens.pop();
+
+        }
+
+    }
+
+    balanced = balanced && opens.empty();
+
+    cout << (balanced ? "Balanced\n" : "Not balanced\n");
+
+}
+
+Question 9 Convert an Infix expression into Postfix
+
+Write a C++ program to convert an Infix expression into Postfix using Stack.
+
+#include <cctype>
+
+#include <iostream>
+
+#include <stack>
+
+#include <string>
+
+using namespace std;
+
+int precedence(char op) {
+
+    if (op == '^') return 3;
+
+    if (op == '*' || op == '/') return 2;
+
+    if (op == '+' || op == '-') return 1;
+
+    return 0;
+
+}
+
+bool rightAssociative(char op) { return op == '^'; }
+
+int main() {
+
+    string infix, postfix;
+
+    stack<char> ops;
+
+    cout << "Infix expression (single-letter/digit operands): "; getline(cin, infix);
+
+    bool valid = true;
+
+    for (char ch : infix) {
+
+        if (isspace(static_cast<unsigned char>(ch))) continue;
+
+        if (isalnum(static_cast<unsigned char>(ch))) { postfix += ch; postfix += ' '; }
+
+        else if (ch == '(') ops.push(ch);
+
+        else if (ch == ')') {
+
+            while (!ops.empty() && ops.top() != '(') { postfix += ops.top(); postfix += ' '; ops.pop(); }
+
+            if (ops.empty()) { valid = false; break; }
+
+            ops.pop();
+
+        } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
+
+            while (!ops.empty() && ops.top() != '(' &&
+
+                   (precedence(ops.top()) > precedence(ch) ||
+
+                    (precedence(ops.top()) == precedence(ch) && !rightAssociative(ch)))) {
+
+                postfix += ops.top(); postfix += ' '; ops.pop();
+
+            }
+
+            ops.push(ch);
+
+        } else { valid = false; break; }
+
+    }
+
+    while (valid && !ops.empty()) {
+
+        if (ops.top() == '(') { valid = false; break; }
+
+        postfix += ops.top(); postfix += ' '; ops.pop();
+
+    }
+
+    if (valid) cout << "Postfix: " << postfix << "\n";
+
+    else cout << "Invalid expression\n";
+
+}
+
+Question 10 Evaluate a Postfix expression
+
+Write a C++ program to evaluate a Postfix expression using Stack.
+
+#include <iostream>
+
+#include <sstream>
+
+#include <stack>
+
+#include <string>
+
+using namespace std;
+
+int main() {
+
+    string line, token;
+
+    stack<long long> values;
+
+    cout << "Enter space-separated postfix tokens, for example 12 3 +: ";
+
+    getline(cin, line);
+
+    istringstream input(line);
+
+    bool valid = true;
+
+    while (input >> token) {
+
+        if (token.size() > 1 || (token[0] >= '0' && token[0] <= '9')) {
+
+            try { size_t used; long long value = stoll(token, &used);
+
+                if (used != token.size()) { valid = false; break; }
+
+                values.push(value);
+
+            } catch (...) { valid = false; break; }
+
+        } else if (token.size() == 1 && string("+-*/^").find(token[0]) != string::npos) {
+
+            if (values.size() < 2) { valid = false; break; }
+
+            long long b = values.top(); values.pop();
+
+            long long a = values.top(); values.pop();
+
+            switch (token[0]) {
+
+                case '+': values.push(a + b); break;
+
+                case '-': values.push(a - b); break;
+
+                case '*': values.push(a * b); break;
+
+                case '/': if (b == 0) valid = false; else values.push(a / b); break;
+
+                case '^': { long long r = 1; if (b < 0) valid = false;
+
+                    else { for (long long i = 0; i < b; ++i) r *= a; values.push(r); } break; }
+
+            }
+
+            if (!valid) break;
+
+        } else { valid = false; break; }
+
+    }
+
+    if (!valid || values.size() != 1) cout << "Invalid postfix expression\n";
+
+    else cout << "Result: " << values.top() << "\n";
+
+}
+
+Question 11 Convert an Infix expression into Prefix
+
+Write a C++ program to convert an Infix expression into Prefix using Stack.
+
+#include <cctype>
+
+#include <iostream>
+
+#include <sstream>
+
+#include <stack>
+
+#include <string>
+
+using namespace std;
+
+int precedence(char op) {
+
+    if (op == '^') return 3;
+
+    if (op == '*' || op == '/') return 2;
+
+    if (op == '+' || op == '-') return 1;
+
+    return 0;
+
+}
+
+int main() {
+
+    string infix, postfix;
+
+    stack<char> ops;
+
+    stack<string> expressions;
+
+    cout << "Infix expression (single-letter/digit operands): "; getline(cin, infix);
+
+    bool valid = true;
+
+    for (char ch : infix) {
+
+        if (isspace(static_cast<unsigned char>(ch))) continue;
+
+        if (isalnum(static_cast<unsigned char>(ch))) { postfix += ch; postfix += ' '; }
+
+        else if (ch == '(') ops.push(ch);
+
+        else if (ch == ')') {
+
+            while (!ops.empty() && ops.top() != '(') { postfix += ops.top(); postfix += ' '; ops.pop(); }
+
+            if (ops.empty()) { valid = false; break; } ops.pop();
+
+        } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
+
+            while (!ops.empty() && ops.top() != '(' &&
+
+                   (precedence(ops.top()) > precedence(ch) ||
+
+                    (precedence(ops.top()) == precedence(ch) && ch != '^'))) {
+
+                postfix += ops.top(); postfix += ' '; ops.pop();
+
+            }
+
+            ops.push(ch);
+
+        } else { valid = false; break; }
+
+    }
+
+    while (valid && !ops.empty()) {
+
+        if (ops.top() == '(') { valid = false; break; }
+
+        postfix += ops.top(); postfix += ' '; ops.pop();
+
+    }
+
+    istringstream input(postfix);
+
+    string token;
+
+    while (valid && input >> token) {
+
+        if (token.size() == 1 && string("+-*/^").find(token[0]) != string::npos) {
+
+            if (expressions.size() < 2) { valid = false; break; }
+
+            string right = expressions.top(); expressions.pop();
+
+            string left = expressions.top(); expressions.pop();
+
+            expressions.push(token + " " + left + " " + right);
+
+        } else expressions.push(token);
+
+    }
+
+    if (!valid || expressions.size() != 1) cout << "Invalid expression\n";
+
+    else cout << "Prefix: " << expressions.top() << "\n";
+
+}
+
+Question 12 Implement two stacks in a single array
+
+Write a C++ program to implement two stacks in a single array.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 10;
+
+int data[CAPACITY], top1 = -1, top2 = CAPACITY;
+
+bool push1(int value) { if (top1 + 1 == top2) return false; data[++top1] = value; return true; }
+
+bool push2(int value) { if (top1 + 1 == top2) return false; data[--top2] = value; return true; }
+
+bool pop1(int& value) { if (top1 == -1) return false; value = data[top1--]; return true; }
+
+bool pop2(int& value) { if (top2 == CAPACITY) return false; value = data[top2++]; return true; }
+
+int main() {
+
+    int value;
+
+    push1(10); push1(20); push2(90); push2(80);
+
+    if (pop1(value)) cout << "Popped from Stack 1: " << value << "\n";
+
+    if (pop2(value)) cout << "Popped from Stack 2: " << value << "\n";
+
+}
+
+Question 13 Implement Stack using a class
+
+Write a C++ program to implement Stack using a class.
+
+#include <iostream>
+
+using namespace std;
+
+class Stack {
+
+    static const int CAPACITY = 5;
+
+    int items[CAPACITY], topIndex = -1;
+
+public:
+
+    void push(int value) {
+
+        if (topIndex == CAPACITY - 1) cout << "Stack Overflow\n";
+
+        else items[++topIndex] = value;
+
+    }
+
+    void pop() {
+
+        if (topIndex == -1) cout << "Stack Underflow\n";
+
+        else cout << "Popped: " << items[topIndex--] << "\n";
+
+    }
+
+    void peek() const {
+
+        if (topIndex == -1) cout << "Stack is empty\n";
+
+        else cout << "TOP: " << items[topIndex] << "\n";
+
+    }
+
+    void display() const {
+
+        for (int i = topIndex; i >= 0; --i) cout << items[i] << " ";
+
+        cout << "\n";
+
+    }
+
+};
+
+int main() {
+
+    Stack s; s.push(5); s.push(10); s.push(15);
+
+    s.display(); s.peek(); s.pop(); s.display();
+
+}
+
+Question 14 Demonstrate Stack use in recursion
+
+Write a C++ program to demonstrate Stack use in recursion.
+
+#include <iostream>
+
+using namespace std;
+
+long long factorial(int n) {
+
+    if (n <= 1) return 1;
+
+    return n * factorial(n - 1);
+
+}
+
+int main() {
+
+    int n;
+
+    cout << "Enter n (0 to 20): "; cin >> n;
+
+    if (n < 0 || n > 20) { cout << "Invalid input\n"; return 0; }
+
+    cout << n << "! = " << factorial(n) << "\n";
+
+    cout << "Each recursive call uses a call-stack frame.\n";
+
+}
+
+Question 15 Analyze the time complexity of Stack operations
+
+Write a C++ program to analyze the time complexity of Push, Pop, Peek, and Display operations.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 5;
+
+class Stack {
+
+    int data[CAPACITY], topIndex = -1;
+
+public:
+
+    bool push(int value) {
+
+        if (topIndex == CAPACITY - 1) return false;
+
+        data[++topIndex] = value; return true;
+
+    }
+
+    bool pop(int& value) {
+
+        if (topIndex == -1) return false;
+
+        value = data[topIndex--]; return true;
+
+    }
+
+    bool peek(int& value) const {
+
+        if (topIndex == -1) return false;
+
+        value = data[topIndex]; return true;
+
+    }
+
+    void display() const {
+
+        for (int i = topIndex; i >= 0; --i) cout << data[i] << " ";
+
+        cout << "\n";
+
+    }
+
+};
+
+int main() {
+
+    Stack s; int value;
+
+    s.push(10); s.push(20); s.push(30);
+
+    s.peek(value); s.pop(value); s.display();
+
+    cout << "Push: O(1)\nPop: O(1)\nPeek: O(1)\nDisplay: O(n)\n";
+
+}
+
+Queue Exercises
+
+C++ Programs
+
+Question 1 Implement a Queue using an array
+
+Write a C++ program to implement a Queue using an array. Perform Enqueue, Dequeue, Peek and Display operations.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 5;
+
+class Queue {
+
+    int data[CAPACITY], frontIndex = 0, rear = -1;
+
+public:
+
+    bool enqueue(int value) {
+
+        if (rear == CAPACITY - 1) return false;
+
+        data[++rear] = value; return true;
+
+    }
+
+    bool dequeue(int& value) {
+
+        if (frontIndex > rear) return false;
+
+        value = data[frontIndex++]; return true;
+
+    }
+
+    bool peek(int& value) const {
+
+        if (frontIndex > rear) return false;
+
+        value = data[frontIndex]; return true;
+
+    }
+
+    void display() const {
+
+        if (frontIndex > rear) { cout << "Queue is empty\n"; return; }
+
+        for (int i = frontIndex; i <= rear; ++i) cout << data[i] << " ";
+
+        cout << "\n";
+
+    }
+
+};
+
+int main() {
+
+    Queue q; int value;
+
+    q.enqueue(10); q.enqueue(20); q.enqueue(30);
+
+    cout << "Front to rear: "; q.display();
+
+    if (q.peek(value)) cout << "Front: " << value << "\n";
+
+    if (q.dequeue(value)) cout << "Removed: " << value << "\n";
+
+    q.display();
+
+}
+
+Question 2 Enqueue at the Rear
+
+Write a C++ program to implement Enqueue operation and demonstrate insertion at the Rear.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int queue[CAPACITY], front = 0, rear = -1;
+
+    auto enqueue = [&](int value) {
+
+        if (rear == CAPACITY - 1) cout << "Queue Overflow\n";
+
+        else { queue[++rear] = value; cout << value << " inserted at Rear\n"; }
+
+    };
+
+    enqueue(10); enqueue(20); enqueue(30);
+
+    cout << "Queue from Front to Rear: ";
+
+    for (int i = front; i <= rear; ++i) cout << queue[i] << " ";
+
+    cout << "\n";
+
+}
+
+Question 3 Dequeue from the Front
+
+Write a C++ program to implement Dequeue operation and demonstrate deletion from the Front.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int queue[CAPACITY] = {10, 20, 30}, front = 0, rear = 2;
+
+    if (front > rear) cout << "Queue Underflow\n";
+
+    else cout << "Deleted from Front: " << queue[front++] << "\n";
+
+    cout << "Remaining elements: ";
+
+    for (int i = front; i <= rear; ++i) cout << queue[i] << " ";
+
+    cout << "\n";
+
+}
+
+Question 4 Peek at the Front element
+
+Write a C++ program to implement Peek operation and display the Front element without deleting it.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    int queue[] = {15, 25, 35};
+
+    int front = 0, rear = 2;
+
+    if (front > rear) cout << "Queue is empty\n";
+
+    else cout << "Front element: " << queue[front] << "\n";
+
+    cout << "Front remains at index " << front << "\n";
+
+}
+
+Question 5 Display queue elements from Front to Rear
+
+Write a C++ program to display all elements of a Queue from Front to Rear.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int queue[CAPACITY] = {11, 22, 33, 44}, front = 0, rear = 3;
+
+    cout << "Front to Rear: ";
+
+    for (int i = front; i <= rear; ++i) cout << queue[i] << " ";
+
+    cout << "\n";
+
+}
+
+Question 6 Demonstrate Queue Overflow using an array
+
+Write a C++ program to demonstrate Queue Overflow using an array.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 3;
+
+    int queue[CAPACITY], rear = -1;
+
+    auto enqueue = [&](int value) {
+
+        if (rear == CAPACITY - 1) cout << "Overflow: cannot enqueue " << value << "\n";
+
+        else { queue[++rear] = value; cout << "Enqueued " << value << "\n"; }
+
+    };
+
+    enqueue(1); enqueue(2); enqueue(3); enqueue(4);
+
+}
+
+Question 7 Demonstrate Queue Underflow
+
+Write a C++ program to demonstrate Queue Underflow.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 3;
+
+    int queue[CAPACITY], front = 0, rear = -1;
+
+    auto dequeue = [&]() {
+
+        if (front > rear) cout << "Underflow: queue is empty\n";
+
+        else cout << "Dequeued " << queue[front++] << "\n";
+
+    };
+
+    dequeue();
+
+    queue[++rear] = 42;
+
+    dequeue();
+
+    dequeue();
+
+}
+
+Question 8 Menu-driven basic Queue operations
+
+Write a menu-driven C++ program implementing all basic Queue operations.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 100;
+
+int main() {
+
+    int queue[CAPACITY], front = 0, rear = -1, choice, value;
+
+    do {
+
+        cout << "1 Enqueue  2 Dequeue  3 Peek  4 Display  0 Exit\nChoice: ";
+
+        cin >> choice;
+
+        if (choice == 1) {
+
+            cout << "Value: "; cin >> value;
+
+            if (rear == CAPACITY - 1) cout << "Queue Overflow\n";
+
+            else queue[++rear] = value;
+
+        } else if (choice == 2) {
+
+            if (front > rear) cout << "Queue Underflow\n";
+
+            else cout << "Removed: " << queue[front++] << "\n";
+
+        } else if (choice == 3) {
+
+            if (front > rear) cout << "Queue is empty\n";
+
+            else cout << "Front: " << queue[front] << "\n";
+
+        } else if (choice == 4) {
+
+            if (front > rear) cout << "Queue is empty\n";
+
+            else { for (int i = front; i <= rear; ++i) cout << queue[i] << " "; cout << "\n"; }
+
+        }
+
+    } while (choice != 0);
+
+}
+
+Question 9 Count the elements in a Queue
+
+Write a C++ program to count the number of elements currently present in a Queue.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 6;
+
+    int queue[CAPACITY] = {5, 10, 15, 20}, front = 1, rear = 3;
+
+    int count = (front > rear) ? 0 : rear - front + 1;
+
+    cout << "Current number of elements: " << count << "\n";
+
+}
+
+Question 10 Search for an element in a Queue
+
+Write a C++ program to search for a given element in a Queue.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int queue[CAPACITY] = {12, 24, 36, 48}, front = 0, rear = 3, key;
+
+    cout << "Value to search: "; cin >> key;
+
+    int position = -1;
+
+    for (int i = front; i <= rear; ++i) if (queue[i] == key) { position = i - front + 1; break; }
+
+    if (position == -1) cout << "Not found\n";
+
+    else cout << "Found at queue position " << position << "\n";
+
+}
+
+Question 11 Find the maximum and minimum elements in a Queue
+
+Write a C++ program to find the maximum and minimum elements in a Queue.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    const int CAPACITY = 5;
+
+    int queue[CAPACITY] = {17, 4, 29, 8}, front = 0, rear = 3;
+
+    if (front > rear) { cout << "Queue is empty\n"; return 0; }
+
+    int smallest = queue[front], largest = queue[front];
+
+    for (int i = front + 1; i <= rear; ++i) {
+
+        if (queue[i] < smallest) smallest = queue[i];
+
+        if (queue[i] > largest) largest = queue[i];
+
+    }
+
+    cout << "Minimum: " << smallest << "\nMaximum: " << largest << "\n";
+
+}
+
+Question 12 Reverse the elements of a Queue
+
+Write a C++ program to reverse the elements of a Queue.
+
+#include <iostream>
+
+#include <queue>
+
+#include <stack>
+
+using namespace std;
+
+int main() {
+
+    queue<int> q;
+
+    stack<int> s;
+
+    int n, value;
+
+    cout << "Number of elements: "; cin >> n;
+
+    for (int i = 0; i < n; ++i) { cin >> value; q.push(value); }
+
+    while (!q.empty()) { s.push(q.front()); q.pop(); }
+
+    while (!s.empty()) { q.push(s.top()); s.pop(); }
+
+    cout << "Reversed queue from Front to Rear: ";
+
+    while (!q.empty()) { cout << q.front() << " "; q.pop(); }
+
+    cout << "\n";
+
+}
+
+Question 13 Implement a Circular Queue using an array
+
+Write a C++ program to implement a Circular Queue using an array.
+
+#include <iostream>
+
+using namespace std;
+
+const int CAPACITY = 5;
+
+class CircularQueue {
+
+    int data[CAPACITY], front = 0, rear = -1, count = 0;
+
+public:
+
+    bool enqueue(int value) {
+
+        if (count == CAPACITY) return false;
+
+        rear = (rear + 1) % CAPACITY; data[rear] = value; ++count; return true;
+
+    }
+
+    bool dequeue(int& value) {
+
+        if (count == 0) return false;
+
+        value = data[front]; front = (front + 1) % CAPACITY; --count; return true;
+
+    }
+
+    void display() const {
+
+        for (int i = 0; i < count; ++i) cout << data[(front + i) % CAPACITY] << " ";
+
+        cout << "\n";
+
+    }
+
+};
+
+int main() {
+
+    CircularQueue q; int value;
+
+    q.enqueue(10); q.enqueue(20); q.enqueue(30);
+
+    q.dequeue(value); q.enqueue(40); q.enqueue(50);
+
+    cout << "Circular queue from Front to Rear: "; q.display();
+
+}
+
+Question 14 Implement Queue using a Linked List
+
+Write a C++ program to implement Queue using a Linked List.
+
+#include <iostream>
+
+using namespace std;
+
+struct Node { int data; Node* next; Node(int v) : data(v), next(nullptr) {} };
+
+class Queue {
+
+    Node* front = nullptr;
+
+    Node* rear = nullptr;
+
+public:
+
+    void enqueue(int value) {
+
+        Node* node = new Node(value);
+
+        if (!rear) front = rear = node;
+
+        else { rear->next = node; rear = node; }
+
+    }
+
+    bool dequeue(int& value) {
+
+        if (!front) return false;
+
+        Node* old = front; value = old->data; front = front->next;
+
+        if (!front) rear = nullptr;
+
+        delete old; return true;
+
+    }
+
+    void display() const {
+
+        for (Node* p = front; p; p = p->next) cout << p->data << " ";
+
+        cout << "\n";
+
+    }
+
+    ~Queue() { int value; while (dequeue(value)) {} }
+
+};
+
+int main() {
+
+    Queue q; int value;
+
+    q.enqueue(10); q.enqueue(20); q.enqueue(30);
+
+    cout << "Front to Rear: "; q.display();
+
+    if (q.dequeue(value)) cout << "Dequeued: " << value << "\n";
+
+    q.display();
+
+}
+
+Question 15 Compare Linear Queue and Circular Queue
+
+Write a C++ program to compare Linear Queue and Circular Queue in terms of space utilization and
+
+#include <iostream>
+
+#include <initializer_list>
+
+using namespace std;
+
+const int CAPACITY = 5;
+
+class LinearQueue {
+
+    int data[CAPACITY], front = 0, rear = -1;
+
+public:
+
+    bool enqueue(int value) {
+
+        if (rear == CAPACITY - 1) return false;
+
+        data[++rear] = value; return true;
+
+    }
+
+    bool dequeue() { if (front > rear) return false; ++front; return true; }
+
+    void display() const {
+
+        for (int i = front; i <= rear; ++i) cout << data[i] << " ";
+
+        cout << "\n";
+
+    }
+
+};
+
+class CircularQueue {
+
+    int data[CAPACITY], front = 0, rear = -1, count = 0;
+
+public:
+
+    bool enqueue(int value) {
+
+        if (count == CAPACITY) return false;
+
+        rear = (rear + 1) % CAPACITY; data[rear] = value; ++count; return true;
+
+    }
+
+    bool dequeue() {
+
+        if (count == 0) return false;
+
+        front = (front + 1) % CAPACITY; --count; return true;
+
+    }
+
+    void display() const {
+
+        for (int i = 0; i < count; ++i) cout << data[(front + i) % CAPACITY] << " ";
+
+        cout << "\n";
+
+    }
+
+};
+
+int main() {
+
+    LinearQueue linear; CircularQueue circular;
+
+    for (int v : {10, 20, 30, 40, 50}) { linear.enqueue(v); circular.enqueue(v); }
+
+    linear.dequeue(); linear.dequeue(); circular.dequeue(); circular.dequeue();
+
+    cout << "Linear enqueue after two deletions: "
+
+         << (linear.enqueue(60) ? "success" : "overflow") << "\n";
+
+    cout << "Circular enqueue after two deletions: "
+
+         << (circular.enqueue(60) ? "success" : "overflow") << "\n";
+
+    cout << "Linear queue: "; linear.display();
+
+    cout << "Circular queue: "; circular.display();
+
+    cout << "Both enqueue and dequeue take O(1); display takes O(n).\n";
+
+    cout << "Circular Queue reuses freed array positions; Linear Queue can leave them unused.\n";
+
+}
